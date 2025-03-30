@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import "../styles/Home.css";
+import GlitchButton from "../components/GlitchButton";
 
 function Home() {
   useEffect(() => {
@@ -9,18 +9,23 @@ function Home() {
 
   return (
     <div className="homepage">
-      <h1 className="title-top">Explore Exotic Wonders in</h1>
-      <h1 className="title-bottom">Kyle Reed's Digital Jungle</h1>
+      <h1 className="title-bottom">Kyle Reed's Digital Zoo</h1>
       <div className="button-container">
-        <Link to="/projects" className="button">
-          Explore
-        </Link>
-        <Link to="/about" className="button">
-          Meet The Founder
-        </Link>
-        <Link to="/contact" className="button">
-          Book a Ticket
-        </Link>
+        <GlitchButton
+          initialText="Explore The Zoo"
+          alternateText="Projects"
+          location={"/projects"}
+        />
+        <GlitchButton
+          initialText="Meet The Founder"
+          alternateText="About Me"
+          location={"/about"}
+        />
+        <GlitchButton
+          initialText="Book a Ticket"
+          alternateText="Contact"
+          location={"/contact"}
+        />
       </div>
     </div>
   );

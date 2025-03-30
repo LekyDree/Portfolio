@@ -1,0 +1,51 @@
+.glitch-button {
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    transition: background 0.3s, transform 0.2s;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.glitch-button:hover {
+    background-color: #1a6d1a;
+    transform: scale(1.05);
+}
+
+.glitch-button span {
+    display: inline-block;
+    transition: transform 0.1s ease-in-out;
+}
+
+.glitching span {
+    position: relative; /* Makes the green text the reference point for the absolute position */
+    color: rgba(0, 255, 0, 1); /* Green text with 50% opacity */
+    white-space: nowrap;
+}
+  
+.glitching span::before {
+    content: attr(data-text); /* Makes the red text appear identical to the green text */
+    position: absolute; /* Position it relative to the parent element */
+    top: -2px; /* Move it 2px up */
+    left: 2px; /* Move it 2px to the right */
+    color: rgba(255, 0, 0, 1); /* Red text with 50% opacity */
+    white-space: nowrap;
+    mix-blend-mode: screen;
+}
+
+.glitching span::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 2px; /* Shifted 2px down */
+    left: -2px; /* Shifted 2px to the right */
+    color: rgba(0, 0, 255, 1); /* Blue text */
+    white-space: nowrap;
+    mix-blend-mode: screen; /* Green, Red, and Blue blend together */
+}
+  

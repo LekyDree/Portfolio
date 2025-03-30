@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "../styles/Contact.css";
 
 function Contact() {
   useEffect(() => {
@@ -7,7 +8,9 @@ function Contact() {
 
   return (
     <div>
-      <h1>Contact</h1>
+      <span class="glitch-text" data-text="Glitch Effect">
+        Glitch Effect
+      </span>
     </div>
   );
 }
