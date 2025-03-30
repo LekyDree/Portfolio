@@ -17,18 +17,18 @@ const GlitchButton = ({ initialText, alternateText, location }) => {
     return `translate(0px, 0px)`;
   };
 
-  const generateGlitchText = () => {
-    const chars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:',.<>?";
-    return Array.from({ length: text.length }, (_, index) => {
-      if (text[index] === " ") {
-        return " ";
-      }
-      return chars[Math.floor(Math.random() * chars.length)];
-    }).join("");
-  };
-
   useEffect(() => {
+    const generateGlitchText = () => {
+      const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:',.<>?";
+      return Array.from({ length: text.length }, (_, index) => {
+        if (text[index] === " ") {
+          return " ";
+        }
+        return chars[Math.floor(Math.random() * chars.length)];
+      }).join("");
+    };
+
     const triggerGlitch = () => {
       setIsGlitching(true);
 
