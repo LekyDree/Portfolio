@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "../styles/GlitchButton.css";
 
@@ -17,18 +17,18 @@ const GlitchButton = ({ initialText, alternateText, location }) => {
     return `translate(0px, 0px)`;
   };
 
-  useEffect(() => {
-    const generateGlitchText = () => {
-      const chars =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:',.<>?";
-      return Array.from({ length: text.length }, (_, index) => {
-        if (text[index] === " ") {
-          return " ";
-        }
-        return chars[Math.floor(Math.random() * chars.length)];
-      }).join("");
-    };
+  const generateGlitchText = useCallback(() => {
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:',.<>?";
+    return Array.from({ length: text.length }, (_, index) => {
+      if (text[index] === " ") {
+        return " ";
+      }
+      return chars[Math.floor(Math.random() * chars.length)];
+    }).join("");
+  }, [text]);
 
+  useEffect(() => {
     const triggerGlitch = () => {
       setIsGlitching(true);
 
@@ -54,7 +54,13 @@ const GlitchButton = ({ initialText, alternateText, location }) => {
     );
 
     return () => clearTimeout(timeout);
-  }, [currentText, initialText, alternateText, initialWait]);
+  }, [
+    currentText,
+    initialText,
+    alternateText,
+    initialWait,
+    generateGlitchText,
+  ]);
 
   return (
     <Link
