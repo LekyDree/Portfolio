@@ -1,0 +1,26 @@
+.glitching {
+    display: inline-block;
+    position: relative; 
+    color: rgba(0, 255, 0, 1); 
+    padding: 0px 2px;
+}
+  
+.glitching::before {
+    content: attr(data-text); 
+    position: absolute; 
+    top: -2px; 
+    left: 4px; 
+    color: rgba(255, 0, 0, 1); 
+    mix-blend-mode: screen;
+}
+
+.glitching::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 2px; 
+    left: 0px; 
+    color: rgba(0, 0, 255, 1); 
+    mix-blend-mode: screen; 
+    padding-right: 4px;
+}
+  

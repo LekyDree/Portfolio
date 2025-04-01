@@ -1,32 +1,48 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Home.css";
-import GlitchButton from "../components/GlitchButton";
+import GlitchText from "../components/GlitchText";
+import { Link } from "react-router-dom";
+import bg1 from "../images/bg1.jpg";
+import bg2 from "../images/bg2.jpg";
 
 function Home() {
+  const [bg, setBg] = useState(`url(${bg1})`);
+  const [showToggle, setShowToggle] = useState(true);
+
   useEffect(() => {
     document.title = "Home";
   }, []);
 
+  const changeBackground = () => {
+    console.log("Pressed");
+    setBg(`url(${bg2})`);
+    setShowToggle(false);
+  };
+
   return (
-    <div className="homepage">
-      <h1 className="title-bottom">Kyle Reed's Digital Zoo</h1>
+    <div className="homepage" style={{ backgroundImage: bg }}>
+      <h1 className="title-top">Welcome to</h1>
+      <h1 className="title-bottom">
+        <GlitchText
+          initialText="The Digital Zoo"
+          alternateText="My Portfolio"
+          dist={40}
+        />
+      </h1>
       <div className="button-container">
-        <GlitchButton
-          initialText="Explore The Zoo"
-          alternateText="Projects"
-          location={"/projects"}
-        />
-        <GlitchButton
-          initialText="Meet The Founder"
-          alternateText="About Me"
-          location={"/about"}
-        />
-        <GlitchButton
-          initialText="Book a Ticket"
-          alternateText="Contact"
-          location={"/contact"}
-        />
+        <Link className="button" to="/projects">
+          <GlitchText initialText="Explore Exhibits" alternateText="Projects" />
+        </Link>
+        <Link className="button" to="/about">
+          <GlitchText initialText="Meet Our Founder" alternateText="About Me" />
+        </Link>
+        <Link className="button" to="/contact">
+          <GlitchText initialText="Book a Ticket" alternateText="Contact" />
+        </Link>
       </div>
+      {showToggle && (
+        <button className="bg-toggle" onClick={changeBackground}></button>
+      )}
     </div>
   );
 }

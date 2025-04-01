@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
-import "../styles/GlitchButton.css";
+import "../styles/GlitchText.css";
 
-const GlitchButton = ({ initialText, alternateText, location }) => {
+const GlitchText = ({ initialText, alternateText, dist }) => {
   const [text, setText] = useState(initialText);
   const [isGlitching, setIsGlitching] = useState(false);
-  const [currentText, setCurrentText] = useState(alternateText);
+  const [nextText, setNextText] = useState(alternateText);
   const [initialWait, setInitialWait] = useState(true);
 
   const getRandomTranslate = () => {
+    if (!dist) {
+      dist = 12;
+    }
     if (isGlitching) {
-      const x = Math.floor(Math.random() * 14) - 7;
-      const y = Math.floor(Math.random() * 14) - 7;
+      const x = Math.floor(Math.random() * dist * 2) - dist;
+      const y = Math.floor(Math.random() * dist * 2) - dist;
       return `translate(${x}px, ${y}px)`;
     }
     return `translate(0px, 0px)`;
@@ -33,15 +35,16 @@ const GlitchButton = ({ initialText, alternateText, location }) => {
       setIsGlitching(true);
 
       let glitchCount = 0;
+      setText(generateGlitchText());
       const glitchInterval = setInterval(() => {
         setText(generateGlitchText());
         glitchCount++;
         if (glitchCount >= 6) {
           clearInterval(glitchInterval);
-          setCurrentText((prev) =>
+          setText(nextText);
+          setNextText((prev) =>
             prev === initialText ? alternateText : initialText
           );
-          setText(currentText);
           setIsGlitching(false);
           setInitialWait(false);
         }
@@ -50,28 +53,22 @@ const GlitchButton = ({ initialText, alternateText, location }) => {
 
     const timeout = setTimeout(
       triggerGlitch,
-      initialWait === true ? 5000 : 10000
+      //initialWait === true ? 5000 : nextText === initialText ? 3000 : 10000
+      5000
     );
 
     return () => clearTimeout(timeout);
-  }, [
-    currentText,
-    initialText,
-    alternateText,
-    initialWait,
-    generateGlitchText,
-  ]);
+  }, [nextText, initialText, alternateText, initialWait, generateGlitchText]);
 
   return (
-    <Link
-      to={location}
-      className={`glitch-button ${isGlitching ? "glitching" : ""}`}
+    <span
+      className={`${isGlitching ? "glitching" : ""}`}
+      data-text={text}
+      style={{ transform: getRandomTranslate() }}
     >
-      <span data-text={text} style={{ transform: getRandomTranslate() }}>
-        {text}
-      </span>
-    </Link>
+      {text}
+    </span>
   );
 };
 
-export default GlitchButton;
+export default GlitchText;
