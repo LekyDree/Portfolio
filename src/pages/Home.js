@@ -37,7 +37,7 @@ function Home() {
           <GlitchText initialText="Meet Our Founder" alternateText="About Me" />
         </Link>
         <Link className="button" to="/contact">
-          <GlitchText initialText="Book a Ticket" alternateText="Contact" />
+          <GlitchText initialText="Buy a Ticket" alternateText="Contact" />
         </Link>
       </div>
       {showToggle && (
