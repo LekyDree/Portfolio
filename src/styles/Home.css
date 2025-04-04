@@ -2,8 +2,6 @@
     position: relative;
     width: 100vw;
     height: 100vh;
-    background-size: cover;
-    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,6 +10,11 @@
     color: rgb(255, 255, 255);
     font-family: 'Arial', sans-serif;
     overflow: hidden;
+    background-color:ivory;
+    background-size: cover;
+    background-position: center;
+    background-image: url('/public/bg1.jpg');
+    z-index: 0;
 }
 
 .homepage::before {
@@ -23,6 +26,10 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
     z-index: 1;
+}
+
+.bg-active {
+  background-image: url('/public/homeAltBG.jpg');
 }
 
 .homepage * {
@@ -54,7 +61,7 @@
     margin-bottom: 50px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 826px) {
   .button-container {
     flex-direction: column;
     margin-top: 200px;
@@ -64,7 +71,7 @@
 
 .button {
     text-decoration: none;
-    background-color: green;
+    background-color:rgb(194, 147, 28);
     color: white;
     padding: 14px 20px;
     border: none;
@@ -79,15 +86,15 @@
 }
 
 .button:hover {
-    background-color: #1a6d1a;
+    background-color: rgb(160, 120, 19);
     transform: scale(1.05);
 }
 
 
 .bg-toggle {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 40px;
+  right: 10px;
   width: 50px;
   height: 50px;
   background: transparent;
@@ -116,7 +123,7 @@
 }
 
 @media (min-width: 1112px) {
-    .homepage::before {
+    .bg-active::before {
         background: radial-gradient(circle, rgb(30, 30, 30, 0.3) 50%, rgb(5, 5, 5) 100%);
     }
     .bg-toggle {

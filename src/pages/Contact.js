@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 import { SiMyanimelist } from "react-icons/si";
 import "../styles/Contact.css";
+import Header from "../components/Header";
 
 const Contact = () => {
   useEffect(() => {
@@ -12,12 +12,7 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <div className="zoo-container">
-        <div className="header">
-          <Link to="/" className="home-text-container">
-            <h1 className="home-text">LEKY DREE</h1>
-            <h1 className="home-text">DIGITAL ZOO</h1>
-          </Link>
-        </div>
+        <Header />
       </div>
       <div className="background-image"></div>
       <div className="contact-container">
