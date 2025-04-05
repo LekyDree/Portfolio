@@ -14,14 +14,14 @@ const Header = () => {
       </Link>
 
       <div className={`nav-links ${menuOpen ? "open" : ""}`}>
-        <Link to="/contact" className="links-text">
-          Book a Ticket
+        <Link to="/projects" className="links-text">
+          Explore The Zoo
         </Link>
         <Link to="/about" className="links-text">
           About Us
         </Link>
-        <Link to="/projects" className="links-text">
-          Explore The Zoo
+        <Link to="/contact" className="links-text">
+          Buy a Ticket
         </Link>
         <Link to="/" className="links-text">
           Minigames

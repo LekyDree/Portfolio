@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import "../styles/About.css";
 
 function About() {
   useEffect(() => {
@@ -6,8 +9,10 @@ function About() {
   }, []);
 
   return (
-    <div>
-      <h1>About</h1>
+    <div className="about-page">
+      <Header />
+
+      <Footer />
     </div>
   );
 }
