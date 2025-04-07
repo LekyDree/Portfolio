@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SignModel from "../components/SignModel";
 import "../styles/About.css";
-import { OrbitControls } from "@react-three/drei";
 
 function About() {
   useEffect(() => {
