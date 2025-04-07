@@ -99,7 +99,7 @@
     transition: transform 0.3s ease-in-out;
     z-index: 11;
     gap: 40px;
-    padding-top: 25%;
+    padding-top: 35%;
 }
 
 .nav-links.open .links-text {

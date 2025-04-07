@@ -1,7 +1,7 @@
 .homepage {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,7 +109,7 @@
   position: absolute;
   width: 12px;
   height: 12px;
-  background: rgb(255, 255, 255, 0.06);
+  background: rgb(255, 255, 25, 0.06);
   border-radius: 50%;
   transform: translateY(-50%);
 }
