@@ -7,8 +7,19 @@ import { useThree } from "@react-three/fiber";
 function SignModel() {
   const ref = useRef();
   const [clicked, setClicked] = useState(false);
-  const { scene } = useGLTF("/sign.glb");
+  const [model, setModel] = useState(null);
   const { viewport } = useThree();
+
+  useEffect(() => {
+    const loadModel = async () => {
+      const { scene } = useGLTF("/sign.glb");
+      setModel(scene);
+    };
+
+    loadModel();
+  }, []);
+
+  if (!model) return null;
 
   const clickedScale = (scale, factor) => {
     if (screenWidth > 500) return scale;
