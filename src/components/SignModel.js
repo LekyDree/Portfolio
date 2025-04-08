@@ -1,23 +1,13 @@
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
 import { Text } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 
 function SignModel() {
   const ref = useRef();
   const [clicked, setClicked] = useState(false);
-  const [model, setModel] = useState(null);
+  const [model, _] = useState(null);
   const { viewport } = useThree();
-
-  useEffect(() => {
-    const loadModel = async () => {
-      const { scene } = useGLTF("/sign.glb");
-      setModel(scene);
-    };
-
-    loadModel();
-  }, []);
 
   if (!model) return null;
 
