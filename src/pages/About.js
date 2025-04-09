@@ -52,7 +52,7 @@ function About() {
       >
         <img
           src={images[currentImageIndex]}
-          alt="Slideshow image"
+          alt="Me"
           className="cycling-image"
         />
       </div>
