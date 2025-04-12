@@ -93,28 +93,29 @@ function About() {
             <div className="sign-content">
               <div className="sign-title">About</div>
               <div className={`sign-body ${clicked ? "clicked" : ""}`}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                Hi, my name is Kyle Reed. I'm a recent graduate with a BS in
+                Computer Science and concentration in Software Engineering. Over
+                the past several years, I’ve built a variety of software
+                projects, including full-stack websites, a mobile app, and
+                numerous Java-based applications. While I haven’t yet had
+                professional experience through internships or jobs, I’ve
+                invested that same effort and my academics and projects to hone
+                my expertise.
                 <br />
                 <br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                Through my work, I’ve gained a strong foundation in designing
+                user-focused solutions, collaborating on complex systems, and
+                adapting to new tools and frameworks as needed. Whether it was
+                developing a mobile app for my software engineering course or
+                building interactive features for my portfolio website, I enjoy
+                the process of breaking down abstract problems into practical,
+                working code.
                 <br />
                 <br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                I’m open to opportunities where I can continue to grow,
+                contribute meaningfully to real-world software, and sharpen my
+                abilities as a developer. Outside of tech, I spend my time
+                watching animated shows, playing games, and studying Japanese.
               </div>
             </div>
           </div>
