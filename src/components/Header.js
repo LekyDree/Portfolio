@@ -23,9 +23,6 @@ const Header = () => {
         <Link to="/contact" className="links-text">
           Buy a Ticket
         </Link>
-        <Link to="/" className="links-text">
-          Minigames
-        </Link>
       </div>
 
       {!menuOpen ? (
