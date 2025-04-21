@@ -13,16 +13,16 @@ function Projects() {
 
   const staticItems = [
     { icon: "restrooms.png", label: "Restrooms" },
-    { icon: "gifts.png", label: "Gifts" },
-    { icon: "wheelchair.png", label: "Wheelchair and Stroller Rentals" },
-    { icon: "first-aid.png", label: "First Aid" },
-    { icon: "water.png", label: "Water Fountain" },
-    { icon: "carousel.png", label: "Carousel" },
+    { icon: "concessions.png", label: "Concessions" },
     { icon: "information.png", label: "Information" },
+    { icon: "gifts.png", label: "Gifts" },
+    { icon: "water.png", label: "Water Fountain" },
+    { icon: "wheelchair.png", label: "Wheelchair and Stroller Rentals" },
     { icon: "picnic.png", label: "Picnic Area" },
     { icon: "aed.png", label: "AED" },
     { icon: "nursing.png", label: "Nursing" },
-    { icon: "concessions.png", label: "Concessions" },
+    { icon: "carousel.png", label: "Carousel" },
+    { icon: "first-aid.png", label: "First Aid" },
   ];
 
   const projectEntries = [
@@ -33,7 +33,7 @@ function Projects() {
 
   const orderedItems = [...staticItems];
 
-  const shuffledProjects = [...projectEntries].sort(() => Math.random() - 0.5);
+  const shuffledProjects = [...projectEntries].sort(() => Math.random());
 
   shuffledProjects.forEach((project) => {
     const insertIndex = Math.floor(Math.random() * (orderedItems.length + 1));
