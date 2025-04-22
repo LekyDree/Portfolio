@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import "../styles/Projects.css";
 
 function Projects() {
@@ -26,19 +26,35 @@ function Projects() {
   ];
 
   const projectEntries = [
-    { name: "PPST Online", isProject: true },
-    { name: "RunSignup Photo App", isProject: true },
-    { name: "Extensions", isProject: true },
+    {
+      name: "PPST Online",
+      summary:
+        "An online platform for administering and analyzing PPST tests securely.",
+      isProject: true,
+    },
+    {
+      name: "RunSignup Photo App",
+      summary: "A mobile app to manage and upload photos for race events.",
+      isProject: true,
+    },
+    {
+      name: "Extensions",
+      summary: "Browser extensions I've created.",
+      isProject: true,
+    },
   ];
 
-  const orderedItems = [...staticItems];
+  const orderedItems = useMemo(() => {
+    const baseItems = [...staticItems];
+    const shuffledProjects = [...projectEntries].sort(() => Math.random());
 
-  const shuffledProjects = [...projectEntries].sort(() => Math.random());
+    shuffledProjects.forEach((project) => {
+      const insertIndex = Math.floor(Math.random() * (baseItems.length + 1));
+      baseItems.splice(insertIndex, 0, project);
+    });
 
-  shuffledProjects.forEach((project) => {
-    const insertIndex = Math.floor(Math.random() * (orderedItems.length + 1));
-    orderedItems.splice(insertIndex, 0, project);
-  });
+    return baseItems;
+  }, []);
 
   return (
     <div className="projects-page">
@@ -50,7 +66,7 @@ function Projects() {
               <div
                 key={index}
                 className="project-key"
-                onClick={() => openPopup(item.name)}
+                onClick={() => openPopup(item)}
               >
                 {item.name}
               </div>
@@ -67,8 +83,8 @@ function Projects() {
             <button className="close-btn" onClick={closePopup}>
               ✕
             </button>
-            <h2>{activeProject}</h2>
-            <p>This is a short description of the {activeProject} project.</p>
+            <h2>{activeProject.name}</h2>
+            <p>{activeProject.summary}</p>
           </div>
         </div>
       )}
