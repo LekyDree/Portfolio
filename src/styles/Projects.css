@@ -3,6 +3,24 @@
   width: 100vw;
   height: 100dvh;
   overflow: hidden;
+  background-color: #c3feca;
+}
+
+.background-map {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 90vh;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  object-fit: contain;
+
+  image-rendering: auto;
+  image-rendering: smooth;
+  -ms-interpolation-mode: bicubic;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .map-key {

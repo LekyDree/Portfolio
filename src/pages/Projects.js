@@ -11,40 +11,40 @@ function Projects() {
   const openPopup = (project) => setActiveProject(project);
   const closePopup = () => setActiveProject(null);
 
-  const staticItems = [
-    { icon: "restrooms.png", label: "Restrooms" },
-    { icon: "concessions.png", label: "Concessions" },
-    { icon: "information.png", label: "Information" },
-    { icon: "gifts.png", label: "Gifts" },
-    { icon: "water.png", label: "Water Fountain" },
-    { icon: "wheelchair.png", label: "Wheelchair and Stroller Rentals" },
-    { icon: "picnic.png", label: "Picnic Area" },
-    { icon: "aed.png", label: "AED" },
-    { icon: "nursing.png", label: "Nursing" },
-    { icon: "carousel.png", label: "Carousel" },
-    { icon: "first-aid.png", label: "First Aid" },
-  ];
-
-  const projectEntries = [
-    {
-      name: "PPST Online",
-      summary:
-        "An online platform for administering and analyzing PPST tests securely.",
-      isProject: true,
-    },
-    {
-      name: "RunSignup Photo App",
-      summary: "A mobile app to manage and upload photos for race events.",
-      isProject: true,
-    },
-    {
-      name: "Extensions",
-      summary: "Browser extensions I've created.",
-      isProject: true,
-    },
-  ];
-
   const orderedItems = useMemo(() => {
+    const staticItems = [
+      { icon: "restrooms.png", label: "Restrooms" },
+      { icon: "concessions.png", label: "Concessions" },
+      { icon: "information.png", label: "Information" },
+      { icon: "gifts.png", label: "Gifts" },
+      { icon: "water.png", label: "Water Fountain" },
+      { icon: "wheelchair.png", label: "Wheelchair and Stroller Rentals" },
+      { icon: "picnic.png", label: "Picnic Area" },
+      { icon: "aed.png", label: "AED" },
+      { icon: "nursing.png", label: "Nursing" },
+      { icon: "carousel.png", label: "Carousel" },
+      { icon: "first-aid.png", label: "First Aid" },
+    ];
+
+    const projectEntries = [
+      {
+        name: "PPST Online",
+        summary:
+          "An online platform for administering and analyzing PPST tests securely.",
+        isProject: true,
+      },
+      {
+        name: "RunSignup Photo App",
+        summary: "A mobile app to manage and upload photos for race events.",
+        isProject: true,
+      },
+      {
+        name: "Extensions",
+        summary: "Browser extensions I've created.",
+        isProject: true,
+      },
+    ];
+
     const baseItems = [...staticItems];
     const shuffledProjects = [...projectEntries].sort(() => Math.random());
 
@@ -58,6 +58,7 @@ function Projects() {
 
   return (
     <div className="projects-page">
+      <img src="zoomap.png" alt="Zoo Map" className="background-map" />
       <div className="map-key">
         <h3 className="map-key-title">MAP KEY</h3>
         <div className="key-grid">
