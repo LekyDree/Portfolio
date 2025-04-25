@@ -6,37 +6,50 @@ import "../styles/Projects.css";
 function Projects() {
   const [activeProject, setActiveProject] = useState(null);
 
+  const [showAreaKey, setShowAreaKey] = useState(false);
+
   useEffect(() => {
     document.title = "Projects";
   }, []);
 
   const [scale, setScale] = useState(1);
-  const [height, setHeight] = useState(80);
+  const [height, setHeight] = useState("75dvh");
+  const [width, setWidth] = useState("auto");
+  const [mapKeyWidth, setMapKeyWidth] = useState("300px");
 
   useEffect(() => {
     const updateSize = () => {
       const baseWidth = 1500;
-      const midWidth = 1100;
-      const thinWidth = 700;
-      const mapHeight = 75;
-      if (window.innerWidth > baseWidth) {
-        setHeight(mapHeight);
-        setScale(1);
-      } else if (window.innerWidth <= thinWidth) {
-        setHeight(((window.innerWidth + 200) / baseWidth) * mapHeight);
-      } else if (window.innerWidth < midWidth) {
-        setHeight((midWidth / baseWidth) * mapHeight);
-        setScale(midWidth / baseWidth);
+      const mapRatio = 2793 / 1897;
+
+      if (window.innerWidth / (window.innerHeight - 325) < mapRatio) {
+        setWidth("95vw");
+        setHeight(`auto`);
+      } else if (window.innerWidth > baseWidth) {
+        setWidth("auto");
+        setHeight(`70dvh`);
       } else {
-        setHeight((window.innerWidth / baseWidth) * mapHeight);
+        setWidth("auto");
+        setHeight(`60dvh`);
       }
 
-      if (window.innerWidth > baseWidth) {
-        setScale(1);
-      } else if (window.innerWidth < midWidth) {
-        setScale(midWidth / baseWidth);
+      const mapStopWidth = 1250;
+
+      if ((window.innerWidth + 130) / window.innerHeight > mapRatio) {
+        setMapKeyWidth("300px");
       } else {
-        setScale(window.innerWidth / baseWidth);
+        setMapKeyWidth("120vw");
+      }
+
+      if (window.innerHeight > 900) {
+        setScale(1);
+        setMapKeyWidth("80vw");
+      } else if (window.innerWidth > baseWidth) {
+        setScale(1);
+      } else if (window.innerWidth < mapStopWidth) {
+        setScale((mapStopWidth / baseWidth) ** 2);
+      } else {
+        setScale((window.innerWidth / baseWidth) ** 2);
       }
     };
 
@@ -191,29 +204,6 @@ function Projects() {
   const firstColumn = areaEntries.slice(0, 5);
   const secondColumn = areaEntries.slice(5);
 
-  /*
-      <div
-        className="area-key"
-        style={{
-          width: `${scale * 220}px`,
-        }}
-      >
-        <div className="key-grid-area">
-          {Object.entries(zooAreas).flatMap(([area, animals]) => [
-            <div key={area} className="area-title">
-              {area}
-            </div>,
-            ...animals.map((animal, i) => (
-              <div key={`${area}-${i}`} className="animal-name">
-                {animal}
-              </div>
-            )),
-          ])}
-        </div>
-      </div>
-
-  */
-
   return (
     <div className="projects-page">
       <Header />
@@ -223,13 +213,15 @@ function Projects() {
         alt="Zoo Map"
         className="background-map"
         style={{
-          height: `${height}dvh`,
+          height: height,
+          width: width,
         }}
       />
       <div
         className="map-key"
         style={{
           transform: `scale(${scale})`,
+          width: mapKeyWidth,
         }}
       >
         <h3 className="map-key-title">MAP KEY</h3>
@@ -241,7 +233,12 @@ function Projects() {
                 className="project-key"
                 onClick={() => openPopup(item)}
               >
-                {item.name}
+                <img
+                  className="icon"
+                  src={`/icons/information.png`}
+                  alt={"info"}
+                ></img>
+                <span>{item.name}</span>
               </div>
             ) : (
               <KeyItem key={index} icon={item.icon} label={item.label} />
@@ -250,7 +247,19 @@ function Projects() {
         </div>
       </div>
 
-      <div className="area-key">
+      <button
+        className="toggle-area-key"
+        onClick={() => setShowAreaKey(!showAreaKey)}
+      >
+        {showAreaKey ? "Area Key ▲" : "Area Key ▼"}
+      </button>
+
+      <div
+        className={`area-key ${showAreaKey ? "open" : ""}`}
+        style={{
+          transform: `scale(${Math.min(1, window.innerHeight / 866) ** 1.7})`,
+        }}
+      >
         <div className="area-columns">
           {[firstColumn, secondColumn].map((column, colIndex) => (
             <div className="area-column" key={colIndex}>
@@ -291,7 +300,7 @@ function Projects() {
 function KeyItem({ icon, label }) {
   return (
     <div className="key-item">
-      <img src={`/icons/${icon}`} alt={label} />
+      <img className="icon" src={`/icons/${icon}`} alt={label} />
       <span>{label}</span>
     </div>
   );
