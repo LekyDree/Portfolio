@@ -11,7 +11,6 @@
   top: 50%;
   left: 50%;
   width: auto;
-  height: 90vh;
   transform: translate(-50%, -50%);
   z-index: 0;
   object-fit: contain;
@@ -25,7 +24,7 @@
 
 .map-key {
   position: absolute;
-  bottom: 20px;
+  bottom: 60px;
   left: 20px;
   background-color: white;
   padding: 16px;
@@ -33,6 +32,8 @@
   width: 300px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   font-family: sans-serif;
+  font-size: 14px;
+  transform-origin: bottom left;
 }
 
 .map-key-title {
@@ -42,15 +43,21 @@
 
 .key-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 12px 8px;
+}
+
+@media (max-width: 1050px) {
+  .map-key {
+    width: 70vw;
+    font-size: 10px;
+  }
 }
 
 .key-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
 }
 
 .key-item img {
@@ -64,6 +71,90 @@
   font-weight: bold;
   color: #2a5da2;
   cursor: pointer;
+}
+
+.area-key {
+  position: absolute;
+  top: 110px;
+  right: 10px;
+  background-color: white;
+  padding: 12px;
+  padding-bottom: 4px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  font-family: sans-serif;
+  font-size: 10px;
+  transform-origin: top right;
+}
+
+@media (max-height: 850px) {
+  .area-key {
+    font-size: 8px;
+  }
+}
+
+@media (max-height: 740px) {
+  .area-key {
+    font-size: 6px;
+  }
+}
+
+.area-columns {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+
+.area-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.area-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.area-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+}
+
+.area-title.tundra {
+  background-color: #9fc4df;
+}
+.area-title.aquariam {
+  background-color: #2c7db6;
+}
+.area-title.desert {
+  background-color: #ff9e4b;
+}
+.area-title.sahara {
+  background-color: #c7c046;
+}
+.area-title.rainforest {
+  background-color: #531fdd;
+}
+.area-title.farm {
+  background-color: #d9455a;
+}
+.area-title.wetlands {
+  background-color: #00dada;
+}
+.area-title.jungle {
+  background-color: #2c7923;
+}
+.area-title.outback {
+  background-color: #ff73ff;
+}
+.area-title.forest {
+  background-color: #6db576;
 }
 
 .popup-overlay {

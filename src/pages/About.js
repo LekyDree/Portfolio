@@ -63,7 +63,7 @@ function About() {
           clicked
             ? {
                 transform: `translate(-50%, -42%) scale(${
-                  window.innerWidth > 650
+                  window.innerWidth > 510
                     ? (window.innerHeight * 0.8) / signHeight
                     : window.innerWidth / signWidth
                 })`,

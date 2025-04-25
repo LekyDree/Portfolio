@@ -1,4 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "../styles/Projects.css";
 
 function Projects() {
@@ -6,6 +8,41 @@ function Projects() {
 
   useEffect(() => {
     document.title = "Projects";
+  }, []);
+
+  const [scale, setScale] = useState(1);
+  const [height, setHeight] = useState(80);
+
+  useEffect(() => {
+    const updateSize = () => {
+      const baseWidth = 1500;
+      const midWidth = 1100;
+      const thinWidth = 700;
+      const mapHeight = 75;
+      if (window.innerWidth > baseWidth) {
+        setHeight(mapHeight);
+        setScale(1);
+      } else if (window.innerWidth <= thinWidth) {
+        setHeight(((window.innerWidth + 200) / baseWidth) * mapHeight);
+      } else if (window.innerWidth < midWidth) {
+        setHeight((midWidth / baseWidth) * mapHeight);
+        setScale(midWidth / baseWidth);
+      } else {
+        setHeight((window.innerWidth / baseWidth) * mapHeight);
+      }
+
+      if (window.innerWidth > baseWidth) {
+        setScale(1);
+      } else if (window.innerWidth < midWidth) {
+        setScale(midWidth / baseWidth);
+      } else {
+        setScale(window.innerWidth / baseWidth);
+      }
+    };
+
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
   }, []);
 
   const openPopup = (project) => setActiveProject(project);
@@ -56,10 +93,145 @@ function Projects() {
     return baseItems;
   }, []);
 
+  const zooAreas = {
+    Farm: ["Chicken", "Cow", "Donkey", "Goat", "Pig", "Sheep"],
+    Forest: [
+      "Cougar",
+      "Gray Wolf",
+      "Great Horned Owl",
+      "Grizzly Bear",
+      "Lynx",
+      "Moose",
+      "Porcupine",
+      "Red Fox",
+      "+ Dozens More",
+    ],
+    Sahara: [
+      "Antelope",
+      "Camel",
+      "Cheetah",
+      "Elephant",
+      "Fennec Fox",
+      "Gazelle",
+      "Giraffe",
+      "Hyena",
+      "Jackal",
+      "Lion",
+      "Ostrich",
+      "Rhinoceros",
+      "Vulture",
+      "Warthog",
+      "Zebra",
+    ],
+    Tundra: [
+      "Arctic Hare",
+      "Caribou",
+      "Ermine",
+      "Harbor Seal",
+      "Penguins",
+      "Walrus",
+    ],
+    Aquariam: [
+      "Dolphins",
+      "Eels",
+      "Manta Ray",
+      "Octopus",
+      "Seahorses",
+      "Sharks",
+      "+100s More",
+    ],
+    Wetlands: [
+      "Alligator",
+      "Beaver",
+      "Capybara",
+      "Flamingo",
+      "Hippopotamus",
+      "Marsh Frogs",
+      "Red-crowned Crane",
+      "Sea Otter",
+      "Snapping Turtle",
+      "Wood Duck",
+    ],
+    Outback: ["Dingo", "Emu", "Kangaroo", "Kiwi", "Koala", "Platypus"],
+    Desert: [
+      "Bearded Dragon",
+      "Camels",
+      "Emperor Scorpion",
+      "Horned Lizard",
+      "Meerkat",
+      "Rattlesnakes",
+      "Roadrunner",
+    ],
+    Rainforest: [
+      "Basilisk Lizard",
+      "Bengal Tiger",
+      "Green Anaconda",
+      "Jaguar",
+      "Matamata Turtle",
+      "Okapi",
+      "Poison Dart Frog",
+      "Sloth",
+      "Spectacled Bear",
+      "Tapir",
+    ],
+    Jungle: [
+      "Fruit Bat",
+      "Gibbons",
+      "Gorillas",
+      "Great Hornbill",
+      "Howler Monkey",
+      "Mandrill",
+      "Parrots",
+      "Ring-tailed Lemur",
+      "Toucans",
+    ],
+  };
+
+  const areaEntries = Object.entries(zooAreas);
+  const firstColumn = areaEntries.slice(0, 5);
+  const secondColumn = areaEntries.slice(5);
+
+  /*
+      <div
+        className="area-key"
+        style={{
+          width: `${scale * 220}px`,
+        }}
+      >
+        <div className="key-grid-area">
+          {Object.entries(zooAreas).flatMap(([area, animals]) => [
+            <div key={area} className="area-title">
+              {area}
+            </div>,
+            ...animals.map((animal, i) => (
+              <div key={`${area}-${i}`} className="animal-name">
+                {animal}
+              </div>
+            )),
+          ])}
+        </div>
+      </div>
+
+  */
+
   return (
     <div className="projects-page">
-      <img src="zoomap.png" alt="Zoo Map" className="background-map" />
-      <div className="map-key">
+      <Header />
+
+      <img
+        src="zoomap.png"
+        alt="Zoo Map"
+        className="background-map"
+        style={{
+          height: `${height}dvh`,
+        }}
+      />
+      <div
+        className="map-key"
+        style={{
+          transform: `scale(${scale})`,
+        }}
+      >
         <h3 className="map-key-title">MAP KEY</h3>
         <div className="key-grid">
           {orderedItems.map((item, index) =>
@@ -78,6 +250,27 @@ function Projects() {
         </div>
       </div>
 
+      <div className="area-key">
+        <div className="area-columns">
+          {[firstColumn, secondColumn].map((column, colIndex) => (
+            <div className="area-column" key={colIndex}>
+              {column.map(([area, animals]) => (
+                <div key={area} className="area-block">
+                  <div className={`area-title ${area.toLowerCase()}`}>
+                    {area}
+                  </div>
+                  {animals.map((animal, i) => (
+                    <div key={i} className="animal-name">
+                      {animal}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
       {activeProject && (
         <div className="popup-overlay" onClick={closePopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
@@ -89,6 +282,8 @@ function Projects() {
           </div>
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }
