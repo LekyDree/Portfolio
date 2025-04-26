@@ -2,10 +2,9 @@ import { useEffect, useState, useMemo } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/Projects.css";
+import GlitchText from "../components/GlitchText";
 
 function Projects() {
-  const [activeProject, setActiveProject] = useState(null);
-
   const [showAreaKey, setShowAreaKey] = useState(false);
 
   useEffect(() => {
@@ -58,9 +57,6 @@ function Projects() {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  const openPopup = (project) => setActiveProject(project);
-  const closePopup = () => setActiveProject(null);
-
   const orderedItems = useMemo(() => {
     const staticItems = [
       { icon: "restrooms.png", label: "Restrooms" },
@@ -80,17 +76,42 @@ function Projects() {
       {
         name: "PPST Online",
         summary:
-          "An online platform for administering and analyzing PPST tests securely.",
+          "A Django web application with a team for doctors to administer and analyze patient PPST cognitive tests, recording response data in an SQLite database. I designed and implemented spreadsheet exports with formatted test results and aggregated data for easy analysis. I improved the user experience by refining Tailwind styling, enhancing navigation, and ensuring visual consistency. Additionally, I refactored code for efficiency and maintainability while resolving numerous bugs to improve site stability.",
+        technologies: [
+          "Django",
+          "Tailwind",
+          "Python",
+          "HTML",
+          "JavaScript",
+          "GitHub",
+        ],
         isProject: true,
       },
       {
         name: "RunSignup Photo App",
         summary: "A mobile app to manage and upload photos for race events.",
+        technologies: ["React Native", "Expo", "JavaScript", "GitHub"],
         isProject: true,
       },
       {
-        name: "Extensions",
-        summary: "Browser extensions I've created.",
+        name: "Key Word Blocker",
+        summary:
+          "Browser extension that automatically closes urls that contain the blocked keywords.",
+        technologies: ["JavaScript", "HTML", "CSS", "Manifest v3", "GitHub"],
+        isProject: true,
+      },
+      {
+        name: "Portfolio Website",
+        summary: "What you are on right now.",
+        technologies: [
+          "React",
+          "JavaScript",
+          "CSS",
+          "EC2",
+          "CI/CD",
+          "Jenkins",
+          "GitHub",
+        ],
         isProject: true,
       },
     ];
@@ -104,6 +125,40 @@ function Projects() {
     });
 
     return baseItems;
+  }, []);
+
+  const projectItems = useMemo(
+    () => orderedItems.filter((item) => item.isProject),
+    [orderedItems]
+  );
+
+  const [activeProjectIndex, setActiveProjectIndex] = useState(null);
+  const [showProjects, setShowProjects] = useState(false);
+
+  const goToNextProject = () => {
+    setActiveProjectIndex((prevIndex) =>
+      prevIndex === null ? 0 : (prevIndex + 1) % projectItems.length
+    );
+  };
+
+  const goToPrevProject = () => {
+    setActiveProjectIndex((prevIndex) =>
+      prevIndex === null
+        ? projectItems.length - 1
+        : (prevIndex - 1 + projectItems.length) % projectItems.length
+    );
+  };
+
+  const openPopup = (project) => {
+    const index = projectItems.findIndex((p) => p.name === project.name);
+    if (index !== -1) setActiveProjectIndex(index);
+  };
+
+  const closePopup = () => setActiveProjectIndex(null);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setShowProjects(true), 2000);
+    return () => clearTimeout(timeout);
   }, []);
 
   const zooAreas = {
@@ -226,8 +281,10 @@ function Projects() {
       >
         <h3 className="map-key-title">MAP KEY</h3>
         <div className="key-grid">
-          {orderedItems.map((item, index) =>
-            item.isProject ? (
+          {orderedItems.map((item, index) => {
+            if (item.isProject && !showProjects) return null;
+
+            return item.isProject ? (
               <div
                 key={index}
                 className="project-key"
@@ -238,12 +295,18 @@ function Projects() {
                   src={`/icons/information.png`}
                   alt={"info"}
                 ></img>
-                <span>{item.name}</span>
+                <GlitchText
+                  initialText={item.name}
+                  alternateText={item.name}
+                  time={Math.random() * 1000 + 1500}
+                  initialTime={60}
+                  glitchTime={180}
+                />
               </div>
             ) : (
               <KeyItem key={index} icon={item.icon} label={item.label} />
-            )
-          )}
+            );
+          })}
         </div>
       </div>
 
@@ -280,14 +343,31 @@ function Projects() {
         </div>
       </div>
 
-      {activeProject && (
+      {activeProjectIndex != null && (
         <div className="popup-overlay" onClick={closePopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
             <button className="close-btn" onClick={closePopup}>
               ✕
             </button>
-            <h2>{activeProject.name}</h2>
-            <p>{activeProject.summary}</p>
+            <h2>{projectItems[activeProjectIndex].name}</h2>
+            <p>{projectItems[activeProjectIndex].summary}</p>
+            <div className="technologies">
+              {projectItems[activeProjectIndex].technologies.map(
+                (tech, index) => (
+                  <span key={index} className="tech-pill">
+                    {tech}
+                  </span>
+                )
+              )}
+            </div>
+            <div className="popup-navigation">
+              <button className="nav-btn" onClick={goToPrevProject}>
+                {"<"} Previous
+              </button>
+              <button className="nav-btn" onClick={goToNextProject}>
+                Next {">"}
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "../styles/GlitchText.css";
 
-const GlitchText = ({ initialText, alternateText, dist }) => {
+const GlitchText = ({
+  initialText,
+  alternateText,
+  dist,
+  time,
+  initialTime,
+  glitchTime,
+}) => {
   const [text, setText] = useState(initialText);
   const [isGlitching, setIsGlitching] = useState(false);
   const [nextText, setNextText] = useState(alternateText);
@@ -39,7 +46,7 @@ const GlitchText = ({ initialText, alternateText, dist }) => {
       const glitchInterval = setInterval(() => {
         setText(generateGlitchText());
         glitchCount++;
-        if (glitchCount >= 6) {
+        if (glitchCount >= Math.floor((glitchTime ?? 360) / 60)) {
           clearInterval(glitchInterval);
           setText(nextText);
           setNextText((prev) =>
@@ -53,12 +60,20 @@ const GlitchText = ({ initialText, alternateText, dist }) => {
 
     const timeout = setTimeout(
       triggerGlitch,
-      //initialWait === true ? 5000 : nextText === initialText ? 3000 : 10000
-      5000
+      initialWait === true ? initialTime ?? time ?? 5000 : time ?? 5000
     );
 
     return () => clearTimeout(timeout);
-  }, [nextText, initialText, alternateText, initialWait, generateGlitchText]);
+  }, [
+    nextText,
+    initialText,
+    alternateText,
+    initialWait,
+    generateGlitchText,
+    glitchTime,
+    time,
+    initialTime,
+  ]);
 
   return (
     <span
