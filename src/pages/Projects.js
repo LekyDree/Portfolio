@@ -40,7 +40,7 @@ function Projects() {
         setMapKeyWidth("120vw");
       }
 
-      if (window.innerHeight > 900) {
+      if (window.innerHeight > 1000) {
         setScale(1);
         setMapKeyWidth("80vw");
       } else if (window.innerWidth > baseWidth) {
@@ -294,7 +294,7 @@ function Projects() {
               >
                 <img
                   className="icon"
-                  src={`/icons/information.png`}
+                  src={`/information.png`}
                   alt={"info"}
                 ></img>
                 <GlitchText
@@ -382,7 +382,7 @@ function Projects() {
 function KeyItem({ icon, label }) {
   return (
     <div className="key-item">
-      <img className="icon" src={`/icons/${icon}`} alt={label} />
+      <img className="icon" src={`/${icon}`} alt={label} />
       <span>{label}</span>
     </div>
   );
