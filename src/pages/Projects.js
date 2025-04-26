@@ -322,7 +322,7 @@ function Projects() {
       <div
         className={`area-key ${showAreaKey ? "open" : ""}`}
         style={{
-          transform: `scale(${Math.min(1, window.innerHeight / 866) ** 1.7})`,
+          transform: `scale(${Math.min(1, window.innerHeight / 920) ** 1.7})`,
         }}
       >
         <div className="area-columns">
