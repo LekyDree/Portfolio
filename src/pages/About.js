@@ -10,31 +10,33 @@ function About() {
 
   const signRef = useRef(null);
 
-  const signWidth = 250;
-  const signHeight = 350;
+  const signWidth = 500;
+  const signHeight = 700;
 
   useEffect(() => {
     if (signRef.current) {
       signRef.current.style.setProperty("--sign-width", `${signWidth}px`);
       signRef.current.style.setProperty("--sign-height", `${signHeight}px`);
-      signRef.current.style.setProperty("--sign-depth", "50px");
-      signRef.current.style.setProperty("--inset-offset", "10px");
-      signRef.current.style.setProperty("--inset-depth", "10px");
+      signRef.current.style.setProperty("--sign-depth", "100px");
+      signRef.current.style.setProperty("--inset-offset", "20px");
+      signRef.current.style.setProperty("--inset-depth", "20px");
     }
   }, []);
 
   const [clicked, setClicked] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const images = [
-    "/me1.png",
+    "/me3.png",
     "/me2.png",
     // add more paths here
   ];
 
+  const [currentImageIndex] = useState(0);
+  /*
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   function cycleImage() {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  }
+  }*/
 
   return (
     <div className="about-page">
@@ -42,12 +44,12 @@ function About() {
 
       <div
         className="image-box"
-        onClick={cycleImage}
+        //onClick={cycleImage}
         style={{
-          height: `${Math.min(
-            50 + ((80 - 50) * window.innerWidth) / 1000,
-            80
-          )}%`,
+          transform: `scale(${Math.min(
+            0.5 + ((0.8 - 0.5) * window.innerWidth) / 1000,
+            1
+          )})`,
         }}
       >
         <img
@@ -55,6 +57,11 @@ function About() {
           alt="Me"
           className="cycling-image"
         />
+        <div className="image-overlay">
+          ERROR: Image Not Found
+          <br />
+          (Waiting on a haircut)
+        </div>
       </div>
 
       <div
@@ -62,16 +69,16 @@ function About() {
         style={
           clicked
             ? {
-                transform: `translate(-50%, -42%) scale(${
-                  window.innerWidth > 510
-                    ? (window.innerHeight * 0.8) / signHeight
-                    : window.innerWidth / signWidth
+                transform: `translate(-50%, -47%) scale(${
+                  window.innerWidth >= 540
+                    ? (window.innerHeight * 0.77) / signHeight
+                    : (window.innerWidth * 0.93) / signWidth
                 })`,
               }
             : {
-                transform: `translate(-55%, 10%) scale(${Math.min(
-                  window.innerWidth / 700,
-                  1
+                transform: `translate(-55%, -20%) scale(${Math.min(
+                  window.innerWidth / 1400,
+                  0.5
                 )})`,
               }
         }
@@ -99,12 +106,12 @@ function About() {
                 projects, including full-stack websites, a mobile app, and
                 numerous Java-based applications. While I haven’t yet had
                 professional experience through internships or jobs, I’ve
-                invested that same effort and my academics and projects to hone
+                invested that same effort into my academics and projects to hone
                 my expertise.
                 <br />
                 <br />
                 Through my work, I’ve gained a strong foundation in designing
-                user-focused solutions, collaborating on complex systems, and
+                user-focused applications, collaborating on complex systems, and
                 adapting to new tools and frameworks as needed. Whether it was
                 developing a mobile app for my software engineering course or
                 building interactive features for my portfolio website, I enjoy

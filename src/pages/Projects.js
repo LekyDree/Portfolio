@@ -76,7 +76,7 @@ function Projects() {
       {
         name: "PPST Online",
         summary:
-          "A Django web application with a team for doctors to administer and analyze patient PPST cognitive tests, recording response data in an SQLite database. I designed and implemented spreadsheet exports with formatted test results and aggregated data for easy analysis. I improved the user experience by refining Tailwind styling, enhancing navigation, and ensuring visual consistency. Additionally, I refactored code for efficiency and maintainability while resolving numerous bugs to improve site stability.",
+          "A Django web application for doctors to administer and analyze patient PPST cognitive tests, with response data recorded in an SQLite database. This was a collaborative project for a college course. I focused on making tweaks to enhance the overall user experience. I refined Tailwind styling, improved navigation, and ensured visual consistency between pages. Additionally, I refactored code for efficiency and maintainability and fixed a lot bugs (so, so many bugs). I contributed lots of small features throughout, but the main feature I worked on was designing and implementing spreadsheet exports with formatted test results and aggregated data for easy analysis.",
         technologies: [
           "Django",
           "Tailwind",
@@ -89,20 +89,22 @@ function Projects() {
       },
       {
         name: "RunSignup Photo App",
-        summary: "A mobile app to manage and upload photos for race events.",
+        summary:
+          "A cross-platform React Native mobile app for race directors to manage and upload event photos during races. I built this in a Scrum team for my Software Engineering I class, collaborating directly with RunSignup. We followed Agile methodology and a GitHub Feature Branch workflow to develop and refine the application. I integrated RunSignup’s API for photo uploads and race/album data retrieval. I also built several core features, including the app’s scaffolding, page layouts, race search, upload progress bars, photo gallery, and offline functionality.",
         technologies: ["React Native", "Expo", "JavaScript", "GitHub"],
         isProject: true,
       },
       {
         name: "Key Word Blocker",
         summary:
-          "Browser extension that automatically closes urls that contain the blocked keywords.",
+          "A Chrome extension I made that automatically closes websites whose URLs contain one or more blocked keywords. I originally built it for myself to help cut down on distractions and stay productive. Since there are a ton of similar extensions, I figured only I would be using it, but it’s currently sitting at over 1,500 users and 5 stars, which still puts a stupid grin on my face.",
         technologies: ["JavaScript", "HTML", "CSS", "Manifest v3", "GitHub"],
         isProject: true,
       },
       {
         name: "Portfolio Website",
-        summary: "What you are on right now.",
+        summary:
+          "A portfolio site for showing off Kyle Reed's accomplishments (that's me!). I figured a traditional portfolio site risked fading into the crowd, so I gave it a gimmick. The idea is this is a zoo website I’ve “hacked into” to inject my portfolio across its pages. The website was entirely designed and coded by me. It is built with React, hosted on an EC2 instance, and deployed automatically using Jenkins whenever I push to GitHub. This was my first time deploying a site like this, and it was definitely a major learning experience. Giving every page a unique shtick, ensuring the site looked good on all screen sizes, and creating the zoo map were all quite time-consuming, but I’m proud of how they turned out.",
         technologies: [
           "React",
           "JavaScript",
