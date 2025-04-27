@@ -32,14 +32,12 @@
     z-index: 21;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 823px) or (max-height: 700px) {
     .contact-container {
         bottom: 5%;
         right: 1%;
     }
-    
-}
-  
+}  
   
 .contact-title {
     color: white;
@@ -52,6 +50,15 @@
     flex-direction: column;
     font-size: 1.75rem;
     gap: 10px;
+}
+
+@media (max-width: 600px)  or (max-height: 680px){
+    .contact-title {
+        font-size: 27px;
+    }
+    .contact-list {
+        font-size: 21px;
+    }
 }
 
 .contact-link {

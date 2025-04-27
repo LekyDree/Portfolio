@@ -76,8 +76,9 @@ function About() {
                 })`,
               }
             : {
-                transform: `translate(-55%, -20%) scale(${Math.min(
-                  window.innerWidth / 1400,
+                transform: `scale(${Math.min(
+                  window.innerWidth / (700 * 2),
+                  window.innerHeight / (900 * 2),
                   0.5
                 )})`,
               }
